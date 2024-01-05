@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  frete-rapido-db:
+    image: postgres
+    container_name: frete-rapido-db
+    ports:
+     - "9948:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: packages

@@ -24,3 +24,4 @@ vendor
 .vscode
 .ideagit
 
+config/env/envs.yaml

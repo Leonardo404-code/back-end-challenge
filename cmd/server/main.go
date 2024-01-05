@@ -2,6 +2,9 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+
+	"frete-rapido-api/internal/database"
+	"frete-rapido-api/internal/env"
 )
 
 // @contact.name Leonardo Bispo
@@ -9,9 +12,10 @@ import (
 // @version 1.0
 // @description Frete Rápido challenge to develop Rest API for external queries and return only expected values.
 func main() {
-	r := gin.Default()
+	_ = database.Must()
 
-	if err := r.Run(":" + "3000"); err != nil {
+	r := gin.Default()
+	if err := r.Run(":" + env.GetString("PORT")); err != nil {
 		panic(err)
 	}
 }
