@@ -9,11 +9,15 @@ package handler
 import (
 	"database/sql"
 	"frete-rapido-api/pkg/shipping"
+	"frete-rapido-api/pkg/shipping/repository"
+	"frete-rapido-api/pkg/shipping/service"
 )
 
 // Injectors from wire.go:
 
 func Build(db *sql.DB) shipping.Handler {
-	shippingHandler := Must()
+	shippingRepository := repository.Must(db)
+	services := service.Must(shippingRepository)
+	shippingHandler := Must(services)
 	return shippingHandler
 }
