@@ -1,0 +1,165 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Frete Rápido challenge to develop Rest API for external queries and return only expected values.",
+        "title": "Frete Rápido back-end challenge",
+        "contact": {
+            "name": "Leonardo Bispo"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/metrics": {
+            "get": {
+                "description": "Endpoint to search quotes data in database",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "shipping"
+                ],
+                "summary": "Get quotes data in database",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Last Quotes",
+                        "name": "last_quotes",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.QuotesResponseDoc"
+                        }
+                    }
+                }
+            }
+        },
+        "/quotes": {
+            "post": {
+                "description": "Endpoint to fetch quotes data from the Frete rápido API and persists it in the database",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "shipping"
+                ],
+                "summary": "Fetch quote data and persist in database",
+                "parameters": [
+                    {
+                        "description": "body request",
+                        "name": "shippingData",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handler.ShippingDataDoc"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.QuotesResponseDoc"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "handler.Address": {
+            "type": "object",
+            "properties": {
+                "zipcode": {
+                    "type": "string",
+                    "example": "01311000"
+                }
+            }
+        },
+        "handler.Carrier": {
+            "type": "object",
+            "properties": {
+                "deadline": {
+                    "type": "string",
+                    "example": "3"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Expresso FR"
+                },
+                "price": {
+                    "type": "integer",
+                    "example": 17
+                },
+                "service": {
+                    "type": "string",
+                    "example": "Rodoviário"
+                }
+            }
+        },
+        "handler.QuotesResponseDoc": {
+            "type": "object",
+            "properties": {
+                "carriers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/handler.Carrier"
+                    }
+                }
+            }
+        },
+        "handler.ShippingDataDoc": {
+            "type": "object",
+            "properties": {
+                "recipient": {
+                    "$ref": "#/definitions/handler.Address"
+                },
+                "volumes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/handler.Volume"
+                    }
+                }
+            }
+        },
+        "handler.Volume": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "category": {
+                    "type": "string",
+                    "example": "7"
+                },
+                "height": {
+                    "type": "number",
+                    "example": 0.2
+                },
+                "length": {
+                    "type": "number",
+                    "example": 0.2
+                },
+                "price": {
+                    "type": "integer",
+                    "example": 350
+                },
+                "unitary_weight": {
+                    "type": "integer",
+                    "example": 5
+                },
+                "width": {
+                    "type": "number",
+                    "example": 0.2
+                }
+            }
+        }
+    }
+}
