@@ -5,6 +5,7 @@ import (
 
 	"frete-rapido-api/internal/database"
 	"frete-rapido-api/internal/env"
+	shippingHandlers "frete-rapido-api/pkg/shipping/handler"
 )
 
 // @contact.name Leonardo Bispo
@@ -12,9 +13,14 @@ import (
 // @version 1.0
 // @description Frete Rápido challenge to develop Rest API for external queries and return only expected values.
 func main() {
-	_ = database.Must()
+	dbConnection := database.Must()
 
 	r := gin.Default()
+	shipHandler := shippingHandlers.Build(dbConnection)
+
+	r.POST("/quote", shipHandler.Quotes)
+	r.GET("/metrics", shipHandler.Metrics)
+
 	if err := r.Run(":" + env.GetString("PORT")); err != nil {
 		panic(err)
 	}
