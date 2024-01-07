@@ -5,6 +5,8 @@ import (
 )
 
 func Error(ctx *gin.Context, statusCode int, err error) {
-	_ = ctx.Error(err)
-	ctx.Status(statusCode)
+	errMessage := map[string]string{
+		"error": err.Error(),
+	}
+	ctx.JSON(statusCode, errMessage)
 }

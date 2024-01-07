@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -21,7 +22,7 @@ func (h *handler) Quotes(ctx *gin.Context) {
 	bodyReq := new(shipping.ShippingDataRequest)
 
 	if err := ctx.ShouldBindJSON(&bodyReq); err != nil {
-		customErr.Error(ctx, http.StatusBadRequest, err)
+		customErr.Error(ctx, http.StatusBadRequest, fmt.Errorf("error in parse body: %v", err))
 		return
 	}
 
