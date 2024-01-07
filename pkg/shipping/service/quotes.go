@@ -9,6 +9,7 @@ import (
 	"frete-rapido-api/pkg/shipping"
 )
 
+// NOTE: implement concurrency when persist in database
 func (s *service) Quotes(
 	shippingData *shipping.ShippingDataRequest,
 ) (*shipping.ShippingDataResponse, error) {
@@ -23,7 +24,6 @@ func (s *service) Quotes(
 	}
 
 	quotesData := new(shipping.QuotesData)
-
 	if err := json.Unmarshal(quotes, quotesData); err != nil {
 		return nil, fmt.Errorf("%w: %v", ErrUnmarshal, err)
 	}
