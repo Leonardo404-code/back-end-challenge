@@ -9,8 +9,7 @@ import (
 	"frete-rapido-api/pkg/shipping"
 )
 
-// TODO: create repository for create role
-// TODO: return data from handler
+// NOTE: implement concurrency when persist in database
 func (s *service) Quotes(
 	shippingData *shipping.ShippingDataRequest,
 ) (*shipping.ShippingDataResponse, error) {
@@ -25,7 +24,6 @@ func (s *service) Quotes(
 	}
 
 	quotesData := new(shipping.QuotesData)
-
 	if err := json.Unmarshal(quotes, quotesData); err != nil {
 		return nil, fmt.Errorf("%w: %v", ErrUnmarshal, err)
 	}
@@ -39,6 +37,12 @@ func (s *service) Quotes(
 			Deadline: data.DeliveryTime.Days,
 			Price:    data.FinalPrice,
 		})
+	}
+
+	for _, carrier := range response.Carrier {
+		if err = s.shippingRepo.Create(&carrier); err != nil {
+			return nil, fmt.Errorf("%w: %v", ErrCreate, err)
+		}
 	}
 
 	return response, nil

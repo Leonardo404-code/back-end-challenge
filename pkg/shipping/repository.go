@@ -1,3 +1,5 @@
 package shipping
 
-type Repository interface{}
+type Repository interface {
+	Create(carrier *CarrierInfo) error
+}

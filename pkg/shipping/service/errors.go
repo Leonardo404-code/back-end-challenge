@@ -9,4 +9,5 @@ var (
 	ErrInvalidRequest    = errors.New("invalid request")
 	ErrMarshal           = errors.New("error in serialize to JSON")
 	ErrUnmarshal         = errors.New("error in unmarshal JSON")
+	ErrCreate            = errors.New("error persisting in database")
 )

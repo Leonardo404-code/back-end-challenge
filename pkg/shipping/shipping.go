@@ -2,10 +2,10 @@ package shipping
 
 type (
 	ShippingDataRequest struct {
-		Shipper        ShipperInfo       `json:"shipper"         validate:"required"`
-		Recipient      Address           `json:"recipient"       validate:"required"`
-		Dispatchers    []DispatchersInfo `json:"dispatchers"     validate:"required"`
-		SimulationType []int             `json:"simulation_type" validate:"required"`
+		Shipper        ShipperInfo       `json:"shipper"`
+		Recipient      Address           `json:"recipient"`
+		Dispatchers    []DispatchersInfo `json:"dispatchers"`
+		SimulationType []int             `json:"simulation_type"`
 	}
 
 	DispatchersInfo struct {
