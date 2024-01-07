@@ -9,8 +9,6 @@ import (
 	"frete-rapido-api/pkg/shipping"
 )
 
-// TODO: create repository for create role
-// TODO: return data from handler
 func (s *service) Quotes(
 	shippingData *shipping.ShippingDataRequest,
 ) (*shipping.ShippingDataResponse, error) {
@@ -39,6 +37,12 @@ func (s *service) Quotes(
 			Deadline: data.DeliveryTime.Days,
 			Price:    data.FinalPrice,
 		})
+	}
+
+	for _, carrier := range response.Carrier {
+		if err = s.shippingRepo.Create(&carrier); err != nil {
+			return nil, fmt.Errorf("%w: %v", ErrCreate, err)
+		}
 	}
 
 	return response, nil
