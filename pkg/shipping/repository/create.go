@@ -9,7 +9,7 @@ import (
 )
 
 func (r *repository) Create(carrier *shipping.CarrierInfo) error {
-	shipppingDB := &ShippingDBModel{
+	shipppingDB := &shipping.CarrierDBModel{
 		ID:       uuid.New().String(),
 		Name:     carrier.Name,
 		Service:  carrier.Service,

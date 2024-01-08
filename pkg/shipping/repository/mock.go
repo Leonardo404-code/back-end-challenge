@@ -31,6 +31,36 @@ func (_m *Mock) Create(carrier *shipping.CarrierInfo) error {
 	return r0
 }
 
+// Search provides a mock function with given fields: filter
+func (_m *Mock) Search(filter *shipping.Filter) ([]*shipping.CarrierDBModel, error) {
+	ret := _m.Called(filter)
+
+	if len(ret) == 0 {
+		panic("no return value specified for Search")
+	}
+
+	var r0 []*shipping.CarrierDBModel
+	var r1 error
+	if rf, ok := ret.Get(0).(func(*shipping.Filter) ([]*shipping.CarrierDBModel, error)); ok {
+		return rf(filter)
+	}
+	if rf, ok := ret.Get(0).(func(*shipping.Filter) []*shipping.CarrierDBModel); ok {
+		r0 = rf(filter)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).([]*shipping.CarrierDBModel)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(*shipping.Filter) error); ok {
+		r1 = rf(filter)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // NewMock creates a new instance of Mock. It also registers a testing interface on the mock and a cleanup function to assert the mocks expectations.
 // The first argument is typically a *testing.T value.
 func NewMock(t interface {
