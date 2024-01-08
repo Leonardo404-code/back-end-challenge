@@ -1,0 +1,125 @@
+definitions:
+  handler.Address:
+    properties:
+      zipcode:
+        example: "01311000"
+        type: string
+    type: object
+  handler.Carrier:
+    properties:
+      deadline:
+        example: "3"
+        type: string
+      name:
+        example: Expresso FR
+        type: string
+      price:
+        example: 17
+        type: integer
+      service:
+        example: Normal
+        type: string
+    type: object
+  handler.MetricsResposneDoc:
+    properties:
+      carriers:
+        items:
+          $ref: '#/definitions/handler.Carrier'
+        type: array
+      higher_price:
+        example: 50.8
+        type: number
+      lowest_price:
+        example: 15.5
+        type: number
+    type: object
+  handler.QuotesResponseDoc:
+    properties:
+      carriers:
+        items:
+          $ref: '#/definitions/handler.Carrier'
+        type: array
+    type: object
+  handler.ShippingDataDoc:
+    properties:
+      recipient:
+        $ref: '#/definitions/handler.Address'
+      volumes:
+        items:
+          $ref: '#/definitions/handler.Volume'
+        type: array
+    type: object
+  handler.Volume:
+    properties:
+      amount:
+        example: 1
+        type: integer
+      category:
+        example: "7"
+        type: string
+      height:
+        example: 0.2
+        type: number
+      length:
+        example: 0.2
+        type: number
+      price:
+        example: 350
+        type: integer
+      unitary_weight:
+        example: 5
+        type: integer
+      width:
+        example: 0.2
+        type: number
+    type: object
+info:
+  contact:
+    name: Leonardo Bispo
+  description: Frete Rápido challenge to develop Rest API for external queries and
+    return only expected values.
+  title: Frete Rápido back-end challenge
+  version: "1.0"
+paths:
+  /metrics:
+    get:
+      description: Endpoint to search quotes data in database
+      parameters:
+      - description: Informs the number of quotes that will be returned
+        in: query
+        name: last_quotes
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.MetricsResposneDoc'
+      summary: Get quotes data in database
+      tags:
+      - shipping
+  /quotes:
+    post:
+      consumes:
+      - application/json
+      description: Endpoint to fetch quotes data from the Frete rápido API and persists
+        it in the database
+      parameters:
+      - description: body request
+        in: body
+        name: shippingData
+        required: true
+        schema:
+          $ref: '#/definitions/handler.ShippingDataDoc'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.QuotesResponseDoc'
+      summary: Fetch quote data and persist in database
+      tags:
+      - shipping
+swagger: "2.0"

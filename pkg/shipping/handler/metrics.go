@@ -14,10 +14,10 @@ import (
 // @Summary Get quotes data in database
 // @Description Endpoint to search quotes data in database
 // @Tags shipping
-// @Param last_quotes query string false "Last Quotes"
+// @Param last_quotes query int false "Informs the number of quotes that will be returned"
 // @Router /metrics [get]
 // @Produce json
-// @Success 200 {object} handler.QuotesResponseDoc
+// @Success 200 {object} handler.MetricsResposneDoc
 func (h *handler) Metrics(ctx *gin.Context) {
 	lastQuotes := ctx.Query(lastQuotesParam)
 	filter := new(shipping.Filter)
