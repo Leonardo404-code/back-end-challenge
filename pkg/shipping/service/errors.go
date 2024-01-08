@@ -10,4 +10,5 @@ var (
 	ErrMarshal           = errors.New("error in serialize to JSON")
 	ErrUnmarshal         = errors.New("error in unmarshal JSON")
 	ErrCreate            = errors.New("error persisting in database")
+	ErrNotFound          = errors.New("carriers not found")
 )

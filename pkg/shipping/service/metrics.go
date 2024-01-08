@@ -12,6 +12,10 @@ func (s *service) Metrics(filter *shipping.Filter) (*shipping.MetricsResponse, e
 		return nil, err
 	}
 
+	if len(carriers) < 1 {
+		return nil, ErrNotFound
+	}
+
 	carrierMap := make(map[string]shipping.CarrierMetrics)
 	lowestPrice, higherPrice := math.MaxFloat64, -math.MaxFloat64
 
