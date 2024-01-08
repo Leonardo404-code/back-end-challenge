@@ -12,12 +12,12 @@ func (s *service) Metrics(filter *shipping.Filter) (*shipping.MetricsResponse, e
 		return nil, err
 	}
 
-	carrierList := make(map[string]shipping.CarrierMetrics)
+	carrierMap := make(map[string]shipping.CarrierMetrics)
 	lowestPrice, higherPrice := math.MaxFloat64, -math.MaxFloat64
 
 	for _, carrier := range carriers {
-		if _, ok := carrierList[carrier.Name]; !ok {
-			carrierList[carrier.Name] = shipping.CarrierMetrics{
+		if _, ok := carrierMap[carrier.Name]; !ok {
+			carrierMap[carrier.Name] = shipping.CarrierMetrics{
 				Total:        carrier.Price,
 				AveragePrice: carrier.Price,
 				Results:      1,
@@ -25,22 +25,26 @@ func (s *service) Metrics(filter *shipping.Filter) (*shipping.MetricsResponse, e
 			continue
 		}
 
-		carrierList[carrier.Name] = shipping.CarrierMetrics{
-			Total:        carrierList[carrier.Name].Total + carrier.Price,
-			AveragePrice: calculeAverage(carrierList[carrier.Name].Total, carrierList[carrier.Name].Results),
-			Results:      carrierList[carrier.Name].Results + 1,
+		total := carrierMap[carrier.Name].Total + carrier.Price
+		average := calculeAverage(carrierMap[carrier.Name].Total, carrierMap[carrier.Name].Results)
+		results := carrierMap[carrier.Name].Results + 1
+
+		carrierMap[carrier.Name] = shipping.CarrierMetrics{
+			Total:        total,
+			AveragePrice: average,
+			Results:      results,
 		}
 	}
 
-	for _, carrier := range carrierList {
+	for _, carrier := range carrierMap {
 		higherPrice = math.Max(higherPrice, carrier.Total)
 		lowestPrice = math.Min(lowestPrice, carrier.Total)
 	}
 
 	metrics := &shipping.MetricsResponse{
-		Carriers:    carrierList,
-		HigherPrice: higherPrice,
+		Carriers:    carrierMap,
 		LowestPrice: lowestPrice,
+		HigherPrice: higherPrice,
 	}
 
 	return metrics, nil
