@@ -1,6 +1,13 @@
 package handler
 
 import (
+	"fmt"
+	"net/http"
+	"strconv"
+
+	customErr "frete-rapido-api/pkg/errors"
+	"frete-rapido-api/pkg/shipping"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,5 +19,23 @@ import (
 // @Produce json
 // @Success 200 {object} handler.QuotesResponseDoc
 func (h *handler) Metrics(ctx *gin.Context) {
-	panic("not implemented")
+	lastQuotes := ctx.Query(lastQuotesParam)
+	filter := new(shipping.Filter)
+
+	if lastQuotes != "" {
+		convertLastQuote, err := strconv.Atoi(lastQuotes)
+		if err != nil {
+			customErr.Error(ctx, http.StatusBadRequest, fmt.Errorf(`last_quote param must be a number`))
+		}
+
+		filter.LastQuotes = convertLastQuote
+	}
+
+	metrics, err := h.shippingSvc.Metrics(filter)
+	if err != nil {
+		customErr.Error(ctx, http.StatusInternalServerError, err)
+		return
+	}
+
+	ctx.JSON(http.StatusOK, metrics)
 }

@@ -1,6 +1,6 @@
 package repository
 
-type ShippingDBModel struct {
+type CarrierDBModel struct {
 	ID       string  `json:"id"`
 	Name     string  `json:"name"`
 	Service  string  `json:"service"`
