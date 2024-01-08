@@ -11,4 +11,5 @@ var (
 	ErrUnmarshal         = errors.New("error in unmarshal JSON")
 	ErrCreate            = errors.New("error persisting in database")
 	ErrNotFound          = errors.New("carriers not found")
+	ErrQuery             = errors.New("error in query carriers")
 )

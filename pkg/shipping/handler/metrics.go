@@ -1,12 +1,14 @@
 package handler
 
 import (
+	"errors"
 	"fmt"
 	"net/http"
 	"strconv"
 
 	customErr "frete-rapido-api/pkg/errors"
 	"frete-rapido-api/pkg/shipping"
+	servicePkg "frete-rapido-api/pkg/shipping/service"
 
 	"github.com/gin-gonic/gin"
 )
@@ -33,9 +35,20 @@ func (h *handler) Metrics(ctx *gin.Context) {
 
 	metrics, err := h.shippingSvc.Metrics(filter)
 	if err != nil {
-		customErr.Error(ctx, http.StatusInternalServerError, err)
+		handlerMetricsErr(ctx, err)
 		return
 	}
 
 	ctx.JSON(http.StatusOK, metrics)
+}
+
+func handlerMetricsErr(ctx *gin.Context, err error) {
+	switch {
+	case errors.Is(err, servicePkg.ErrNotFound):
+		customErr.Error(ctx, http.StatusNotFound, err)
+		return
+	default:
+		customErr.Error(ctx, http.StatusInternalServerError, err)
+		return
+	}
 }

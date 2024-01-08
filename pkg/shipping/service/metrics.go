@@ -1,6 +1,7 @@
 package service
 
 import (
+	"fmt"
 	"math"
 
 	"frete-rapido-api/pkg/shipping"
@@ -9,7 +10,7 @@ import (
 func (s *service) Metrics(filter *shipping.Filter) (*shipping.MetricsResponse, error) {
 	carriers, err := s.shippingRepo.Search(filter)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("%w: %v", ErrQuery, err)
 	}
 
 	if len(carriers) < 1 {

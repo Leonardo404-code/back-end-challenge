@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"errors"
 	"fmt"
 	"net/http"
 
@@ -8,6 +9,7 @@ import (
 
 	customErr "frete-rapido-api/pkg/errors"
 	"frete-rapido-api/pkg/shipping"
+	servicePkg "frete-rapido-api/pkg/shipping/service"
 )
 
 // @Summary Fetch quote data and persist in database
@@ -28,9 +30,23 @@ func (h *handler) Quotes(ctx *gin.Context) {
 
 	quotes, err := h.shippingSvc.Quotes(bodyReq)
 	if err != nil {
-		customErr.Error(ctx, http.StatusInternalServerError, err)
+		handleQuotesErr(ctx, err)
 		return
 	}
 
 	ctx.JSON(http.StatusOK, quotes)
+}
+
+func handleQuotesErr(ctx *gin.Context, err error) {
+	switch {
+	case errors.Is(err, servicePkg.ErrInvalidRequest):
+		customErr.Error(ctx, http.StatusBadRequest, err)
+		return
+	case errors.Is(err, servicePkg.ErrPerformRequest):
+		customErr.Error(ctx, http.StatusBadGateway, err)
+		return
+	default:
+		customErr.Error(ctx, http.StatusInternalServerError, err)
+		return
+	}
 }
