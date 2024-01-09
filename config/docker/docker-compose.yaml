@@ -1,12 +1,36 @@
 version: "3.7"
 
+networks:
+  mynet:
+    driver: bridge
+
+volumes:
+  postgres_data:
+
 services:
-  frete-rapido-db:
+  db:
     image: postgres
-    container_name: frete-rapido-db
+    container_name: db
+    networks:
+     - mynet
     ports:
      - "9948:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: packages
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  app:
+    build:
+      context: ../../
+      dockerfile: Dockerfile
+    container_name: app
+    networks:
+     - mynet
+    ports:
+     - "3000:3000"
+    deploy:
+      restart_policy:
+        condition: on-failure
+
