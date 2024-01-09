@@ -12,4 +12,5 @@ var (
 	ErrCreate            = errors.New("error persisting in database")
 	ErrNotFound          = errors.New("carriers not found")
 	ErrQuery             = errors.New("error in query carriers")
+	ErrConvertString     = errors.New("error in convert string to float64")
 )
