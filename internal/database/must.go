@@ -3,11 +3,10 @@ package database
 import (
 	"database/sql"
 	"fmt"
+	"os"
 	"sync"
 
 	_ "github.com/jackc/pgx/v4/stdlib"
-
-	"frete-rapido-api/internal/env"
 )
 
 var (
@@ -17,7 +16,7 @@ var (
 
 func Must() *sql.DB {
 	once.Do(func() {
-		dbURL := env.GetString("DATABASE.URL")
+		dbURL := os.Getenv("DATABASE_URL")
 
 		postgresConn, err := sql.Open("pgx", dbURL)
 		if err != nil {

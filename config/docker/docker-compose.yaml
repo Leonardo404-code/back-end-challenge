@@ -27,9 +27,12 @@ services:
       dockerfile: Dockerfile
     container_name: app
     networks:
-     - mynet
+      - mynet
     ports:
-     - "3000:3000"
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/packages
+      - PORT=3000
     deploy:
       restart_policy:
         condition: on-failure

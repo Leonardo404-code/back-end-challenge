@@ -1,10 +1,11 @@
 package main
 
 import (
+	"os"
+
 	"github.com/gin-gonic/gin"
 
 	"frete-rapido-api/internal/database"
-	"frete-rapido-api/internal/env"
 	shippingHandlers "frete-rapido-api/pkg/shipping/handler"
 )
 
@@ -21,7 +22,7 @@ func main() {
 	r.POST("/quote", shipHandler.Quotes)
 	r.GET("/metrics", shipHandler.Metrics)
 
-	if err := r.Run(":" + env.GetString("PORT")); err != nil {
+	if err := r.Run(":" + os.Getenv("PORT")); err != nil {
 		panic(err)
 	}
 }
