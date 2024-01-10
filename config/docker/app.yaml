@@ -4,23 +4,7 @@ networks:
   mynet:
     driver: bridge
 
-volumes:
-  postgres_data:
-
 services:
-  db:
-    image: postgres
-    container_name: db
-    networks:
-     - mynet
-    ports:
-     - "9948:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: packages
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
   app:
     build:
       context: ../../
@@ -36,4 +20,3 @@ services:
     deploy:
       restart_policy:
         condition: on-failure
-

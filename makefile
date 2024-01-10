@@ -9,3 +9,7 @@ lint: #golang-ci-lint: github.com/golangci/golangci-lint
 	golangci-lint run --timeout 5m0s -E gocyclo -E funlen -E lll ./...
 tests:
 	go test ./...
+run_docker_db:
+	docker compose -f ./config/docker/database.yaml up -d
+run_docker_app:
+	docker compose -f ./config/docker/app.yaml up -d

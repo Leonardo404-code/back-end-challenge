@@ -13,7 +13,6 @@ RUN upx -9 -k frete-rapido
 FROM alpine
 
 WORKDIR /app
-COPY --from=builder /app/config/env /app/config/env
 COPY --from=builder /app/frete-rapido .
 COPY --from=builder /app/go.mod /app/go.mod 
 COPY --from=builder /app/go.sum /app/go.sum 
