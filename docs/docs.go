@@ -81,12 +81,20 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "handler.Address": {
+        "handler.AddressDoc": {
             "type": "object",
             "properties": {
-                "zipcode": {
+                "country": {
                     "type": "string",
-                    "example": "01311000"
+                    "example": "BRA"
+                },
+                "type": {
+                    "type": "integer",
+                    "example": 0
+                },
+                "zipcode": {
+                    "type": "integer",
+                    "example": 1324553
                 }
             }
         },
@@ -111,18 +119,54 @@ const docTemplate = `{
                 }
             }
         },
+        "handler.CarrierMetricsDoc": {
+            "type": "object",
+            "properties": {
+                "average_price": {
+                    "type": "number",
+                    "example": 18.5
+                },
+                "results": {
+                    "type": "integer",
+                    "example": 3
+                },
+                "total": {
+                    "type": "number",
+                    "example": 55.5
+                }
+            }
+        },
+        "handler.DispatchersDoc": {
+            "type": "object",
+            "properties": {
+                "registered_number": {
+                    "type": "string",
+                    "example": "12345"
+                },
+                "volumes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/handler.Volume"
+                    }
+                },
+                "zipcode": {
+                    "type": "integer",
+                    "example": 1324553
+                }
+            }
+        },
         "handler.MetricsResposneDoc": {
             "type": "object",
             "properties": {
                 "carriers": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/handler.Carrier"
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/handler.CarrierMetricsDoc"
                     }
                 },
                 "higher_price": {
                     "type": "number",
-                    "example": 50.8
+                    "example": 55.5
                 },
                 "lowest_price": {
                     "type": "number",
@@ -141,16 +185,42 @@ const docTemplate = `{
                 }
             }
         },
+        "handler.ShipperDoc": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string",
+                    "example": "0ScdOLqC3r"
+                },
+                "registered_number": {
+                    "type": "string",
+                    "example": "12345"
+                },
+                "token": {
+                    "type": "string",
+                    "example": "19ebbe852f2f48be9713e802522783ee"
+                }
+            }
+        },
         "handler.ShippingDataDoc": {
             "type": "object",
             "properties": {
-                "recipient": {
-                    "$ref": "#/definitions/handler.Address"
-                },
-                "volumes": {
+                "dispatchers": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/handler.Volume"
+                        "$ref": "#/definitions/handler.DispatchersDoc"
+                    }
+                },
+                "recipient": {
+                    "$ref": "#/definitions/handler.AddressDoc"
+                },
+                "shipper": {
+                    "$ref": "#/definitions/handler.ShipperDoc"
+                },
+                "simulation_type": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
                     }
                 }
             }
@@ -178,9 +248,13 @@ const docTemplate = `{
                     "type": "integer",
                     "example": 350
                 },
+                "unitary_price": {
+                    "type": "number",
+                    "example": 5.2
+                },
                 "unitary_weight": {
-                    "type": "integer",
-                    "example": 5
+                    "type": "number",
+                    "example": 5.2
                 },
                 "width": {
                     "type": "number",
