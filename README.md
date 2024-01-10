@@ -32,6 +32,7 @@ go mod vendor
 ```
 
 ### Set environment variables
+
 - Set environment variables listed in the table below
 
 ## Migrations
@@ -45,9 +46,9 @@ go mod vendor
 go run cmd/server/main.go
 ```
 
-- That's it, the application will be running locally on the port you configured! 🚀
+- Application will be running locally on the port you configured! 🚀
 
-## Running with docker
+## Using Docker
 
 - Install docker
 
