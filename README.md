@@ -73,7 +73,7 @@ You should see the application and database containers running, like:
 
 - Application will be running locally on port 3000! 🚀
 
-## Testes
+## Tests
 
 - Inside frete-rapido-api directory, run:
 
