@@ -22,7 +22,7 @@ Docker is a software platform that allows developers to create, deploy, and run 
 ### Run Docker compose
 
 ```docker
-docker compose -f ./config/docker/docker-compose.yaml -d
+docker compose -f ./config/docker/database.yaml up -d
 ```
 
 ### Download the project dependencies
@@ -36,6 +36,7 @@ go mod vendor
 - Set environment variables listed in the table below
 
 ## Migrations
+
 - Perform database migrations (with [goose](https://github.com/pressly/goose) or directly in the database)
 
 ## Execute the project
@@ -52,10 +53,16 @@ go run cmd/server/main.go
 
 - Install docker
 
-### Run Docker compose
+### Setup database
 
 ```docker
-docker compose -f ./config/docker/docker-compose.yaml -d
+docker compose -f ./config/docker/database.yaml up -d
+```
+
+### Setup application
+
+```docker
+docker compose -f ./config/docker/app.yaml up -d
 ```
 
 - List running containers
