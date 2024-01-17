@@ -1,4 +1,4 @@
-# Frete Rápido Back-end challenge
+# Shipping-Calculator-api
 
 Rest API for external queries of delivery data in the Frete Rápido API
 
@@ -41,7 +41,7 @@ go mod vendor
 
 ## Execute the project
 
-- Inside frete-rapido-api directory, run:
+- Inside shipping-calculator-api directory, run:
 
 ```go
 go run cmd/server/main.go
@@ -83,7 +83,7 @@ You should see the application and database containers running, like:
 
 ## Tests
 
-- Inside frete-rapido-api directory, run:
+- Inside shipping-calculator-api directory, run:
 
 ```go
 go test ./... -v
