@@ -5,7 +5,7 @@ import (
 	"math"
 	"strconv"
 
-	"frete-rapido-api/pkg/shipping"
+	"shipping-calculator-api/pkg/shipping"
 )
 
 func (s *service) Metrics(filter *shipping.Filter) (*shipping.MetricsResponse, error) {

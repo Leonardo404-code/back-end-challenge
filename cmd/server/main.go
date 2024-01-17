@@ -5,8 +5,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"frete-rapido-api/internal/database"
-	shippingHandlers "frete-rapido-api/pkg/shipping/handler"
+	"shipping-calculator-api/internal/database"
+	shippingHandlers "shipping-calculator-api/pkg/shipping/handler"
 )
 
 // @contact.name Leonardo Bispo

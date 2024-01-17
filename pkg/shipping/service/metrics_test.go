@@ -5,8 +5,8 @@ import (
 	"reflect"
 	"testing"
 
-	"frete-rapido-api/pkg/shipping"
-	"frete-rapido-api/pkg/shipping/repository"
+	"shipping-calculator-api/pkg/shipping"
+	"shipping-calculator-api/pkg/shipping/repository"
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/mock"

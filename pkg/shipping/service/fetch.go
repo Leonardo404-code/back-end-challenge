@@ -7,7 +7,7 @@ import (
 	"io"
 	"net/http"
 
-	"frete-rapido-api/pkg/shipping"
+	"shipping-calculator-api/pkg/shipping"
 )
 
 func (s *service) Fetch(shippingData *shipping.ShippingDataRequest) ([]byte, error) {

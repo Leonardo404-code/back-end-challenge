@@ -6,7 +6,7 @@ import (
 
 	"github.com/go-playground/validator/v10"
 
-	"frete-rapido-api/pkg/shipping"
+	"shipping-calculator-api/pkg/shipping"
 )
 
 func (s *service) Quotes(

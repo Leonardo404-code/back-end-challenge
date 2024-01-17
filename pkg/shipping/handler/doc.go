@@ -14,9 +14,9 @@ type (
 
 	ShippingDataDoc struct {
 		Shipper        ShipperDoc
-		Recipient      AddressDoc
 		Dispatchers    []DispatchersDoc
 		SimulationType []int `json:"simulation_type"`
+		Recipient      AddressDoc
 	}
 
 	ShipperDoc struct {
@@ -27,8 +27,8 @@ type (
 
 	DispatchersDoc struct {
 		RegisteredNumber string `json:"registered_number" example:"81321255683644951537"`
-		Zipcode          int    `json:"zipcode"           example:"1324553"`
 		Volumes          []Volume
+		Zipcode          int `json:"zipcode"           example:"1324553"`
 	}
 
 	Volume struct {
@@ -43,8 +43,8 @@ type (
 	}
 
 	AddressDoc struct {
-		Type    int    `json:"type"    example:"0"`
 		Country string `json:"country" example:"BRA"`
+		Type    int    `json:"type"    example:"0"`
 		Zipcode int    `json:"zipcode" example:"1324553"`
 	}
 

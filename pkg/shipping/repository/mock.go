@@ -3,7 +3,7 @@
 package repository
 
 import (
-	shipping "frete-rapido-api/pkg/shipping"
+	shipping "shipping-calculator-api/pkg/shipping"
 
 	mock "github.com/stretchr/testify/mock"
 )

@@ -1,6 +1,6 @@
 package handler
 
-import "frete-rapido-api/pkg/shipping"
+import "shipping-calculator-api/pkg/shipping"
 
 type handler struct {
 	shippingSvc shipping.Services

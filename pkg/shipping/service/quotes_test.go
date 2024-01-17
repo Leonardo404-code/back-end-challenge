@@ -4,8 +4,8 @@ import (
 	"reflect"
 	"testing"
 
-	"frete-rapido-api/pkg/shipping"
-	"frete-rapido-api/pkg/shipping/repository"
+	"shipping-calculator-api/pkg/shipping"
+	"shipping-calculator-api/pkg/shipping/repository"
 )
 
 func Test_service_Quotes(t *testing.T) {

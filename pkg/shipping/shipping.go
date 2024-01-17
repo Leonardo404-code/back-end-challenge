@@ -3,15 +3,15 @@ package shipping
 type (
 	ShippingDataRequest struct {
 		Shipper        ShipperInfo       `json:"shipper"`
-		Recipient      Address           `json:"recipient"`
 		Dispatchers    []DispatchersInfo `json:"dispatchers"`
 		SimulationType []int             `json:"simulation_type"`
+		Recipient      Address           `json:"recipient"`
 	}
 
 	DispatchersInfo struct {
 		RegisteredNumber string   `json:"registered_number" validate:"required"`
-		Zipcode          int64    `json:"zipcode"           validate:"required"`
 		Volumes          []Volume `json:"volumes"`
+		Zipcode          int64    `json:"zipcode"           validate:"required"`
 	}
 
 	Volume struct {
@@ -26,8 +26,8 @@ type (
 	}
 
 	Address struct {
-		Type    int    `json:"type"`
 		Country string `json:"country" validate:"required"`
+		Type    int    `json:"type"`
 		Zipcode int64  `json:"zipcode" validate:"required"`
 	}
 
@@ -57,8 +57,8 @@ type (
 	}
 
 	Offers struct {
-		Carrier      CarrierInfo  `json:"carrier"`
 		Service      string       `json:"service,omitempty"`
+		Carrier      CarrierInfo  `json:"carrier"`
 		FinalPrice   float64      `json:"final_price"`
 		DeliveryTime DeliveryTime `json:"delivery_time"`
 	}

@@ -8,9 +8,9 @@ package handler
 
 import (
 	"database/sql"
-	"frete-rapido-api/pkg/shipping"
-	"frete-rapido-api/pkg/shipping/repository"
-	"frete-rapido-api/pkg/shipping/service"
+	"shipping-calculator-api/pkg/shipping"
+	"shipping-calculator-api/pkg/shipping/repository"
+	"shipping-calculator-api/pkg/shipping/service"
 )
 
 // Injectors from wire.go:

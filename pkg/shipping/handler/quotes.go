@@ -7,9 +7,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	customErr "frete-rapido-api/pkg/errors"
-	"frete-rapido-api/pkg/shipping"
-	servicePkg "frete-rapido-api/pkg/shipping/service"
+	customErr "shipping-calculator-api/pkg/errors"
+	"shipping-calculator-api/pkg/shipping"
+	servicePkg "shipping-calculator-api/pkg/shipping/service"
 )
 
 // @Summary Fetch quote data and persist in database

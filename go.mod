@@ -1,4 +1,4 @@
-module frete-rapido-api
+module shipping-calculator-api
 
 go 1.21.3
 

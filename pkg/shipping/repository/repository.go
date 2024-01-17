@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"sync"
 
-	"frete-rapido-api/pkg/shipping"
+	"shipping-calculator-api/pkg/shipping"
 )
 
 type repository struct {

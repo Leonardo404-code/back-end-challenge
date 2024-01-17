@@ -3,7 +3,7 @@ package repository
 import (
 	"fmt"
 
-	"frete-rapido-api/pkg/shipping"
+	"shipping-calculator-api/pkg/shipping"
 
 	"github.com/google/uuid"
 )

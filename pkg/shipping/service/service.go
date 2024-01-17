@@ -3,7 +3,7 @@ package service
 import (
 	"sync"
 
-	"frete-rapido-api/pkg/shipping"
+	"shipping-calculator-api/pkg/shipping"
 )
 
 type service struct {

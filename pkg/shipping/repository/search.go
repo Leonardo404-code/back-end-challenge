@@ -3,7 +3,7 @@ package repository
 import (
 	"database/sql"
 
-	"frete-rapido-api/pkg/shipping"
+	"shipping-calculator-api/pkg/shipping"
 
 	"github.com/doug-martin/goqu/v9"
 )

@@ -5,12 +5,11 @@ package handler
 
 import (
 	"database/sql"
+	"shipping-calculator-api/pkg/shipping"
+	"shipping-calculator-api/pkg/shipping/repository"
+	"shipping-calculator-api/pkg/shipping/service"
 
 	"github.com/google/wire"
-
-	"frete-rapido-api/pkg/shipping"
-	"frete-rapido-api/pkg/shipping/repository"
-	"frete-rapido-api/pkg/shipping/service"
 )
 
 func Build(db *sql.DB) shipping.Handler {
