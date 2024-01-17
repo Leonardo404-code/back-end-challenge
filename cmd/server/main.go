@@ -10,9 +10,9 @@ import (
 )
 
 // @contact.name Leonardo Bispo
-// @title Frete Rápido back-end challenge
+// @title Shipping Calculator API
 // @version 1.0
-// @description Frete Rápido challenge to develop Rest API for external queries and return only expected values.
+// @description A REST API that fetches delivery data from the Frete Rápido API, stores it in the database and calculates the shipping data.
 func main() {
 	dbConnection := database.Must()
 

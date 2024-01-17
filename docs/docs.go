@@ -141,7 +141,7 @@ const docTemplate = `{
             "properties": {
                 "registered_number": {
                     "type": "string",
-                    "example": "12345"
+                    "example": "81321255683644951537"
                 },
                 "volumes": {
                     "type": "array",
@@ -271,8 +271,8 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "",
 	BasePath:         "",
 	Schemes:          []string{},
-	Title:            "Frete Rápido back-end challenge",
-	Description:      "Frete Rápido challenge to develop Rest API for external queries and return only expected values.",
+	Title:            "Shipping Calculator API",
+	Description:      "A REST API that fetches delivery data from the Frete Rápido API, stores it in the database and calculates the shipping data.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

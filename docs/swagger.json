@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "Frete Rápido challenge to develop Rest API for external queries and return only expected values.",
-        "title": "Frete Rápido back-end challenge",
+        "description": "A REST API that fetches delivery data from the Frete Rápido API, stores it in the database and calculates the shipping data.",
+        "title": "Shipping Calculator API",
         "contact": {
             "name": "Leonardo Bispo"
         },
@@ -133,7 +133,7 @@
             "properties": {
                 "registered_number": {
                     "type": "string",
-                    "example": "12345"
+                    "example": "81321255683644951537"
                 },
                 "volumes": {
                     "type": "array",
